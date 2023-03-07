@@ -1,4 +1,5 @@
 ---
+import { FormatDateWithoutYear } from '../utils/funciones'
 export interface Props {
 	title: string
 	time: string
@@ -17,8 +18,8 @@ const { title, time, tags, slug } = Astro.props
 	/>
 
 	<div class="bg-white p-4 sm:p-6">
-		<time datetime="2022-10-10" class="block text-xs text-gray-500">
-			{time}
+		<time datetime={FormatDateWithoutYear(time)} class="block text-xs text-gray-500">
+			{FormatDateWithoutYear(time)}
 		</time>
 
 		<a href={`/post/${slug}`}>
