@@ -1,8 +1,6 @@
 import { defineConfig } from 'astro/config';
-
 import tailwind from "@astrojs/tailwind";
 
-// https://astro.build/config
 import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
@@ -15,6 +13,10 @@ import vue from "@astrojs/vue";
 import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
+import sitemap from "@astrojs/sitemap";
+
+// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), mdx(), react(), vue(), svelte()]
+  site: 'https://localhost:3000',
+  integrations: [tailwind(), mdx(), react(), vue(), svelte(), sitemap()]
 });
