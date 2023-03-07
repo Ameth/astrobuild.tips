@@ -1,40 +1,43 @@
 ---
 export interface Props {
-  title: string
-  time: string
-  tags: string
+	title: string
+	time: string
+	tags: string[]
+  slug: string
 }
 
-const { title, time, tags } = Astro.props
+const { title, time, tags, slug } = Astro.props
 ---
 
-<article class='overflow-hidden rounded-lg shadow transition hover:shadow-lg'>
-  <img
-    alt='Office'
-    src='https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
-    class='h-56 w-full object-cover'
-  />
+<article class="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
+	<img
+		alt="Office"
+		src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+		class="h-56 w-full object-cover"
+	/>
 
-  <div class='bg-white p-4 sm:p-6'>
-    <time datetime='2022-10-10' class='block text-xs text-gray-500'>
-      {time}
-    </time>
+	<div class="bg-white p-4 sm:p-6">
+		<time datetime="2022-10-10" class="block text-xs text-gray-500">
+			{time}
+		</time>
 
-    <a href="#">
-      <h3 class='mt-0.5 text-lg text-gray-900'>
-        {title}
-      </h3>
-    </a>
+		<a href={`/post/${slug}`}>
+			<h3 class="mt-0.5 text-lg text-gray-900">
+				{title}
+			</h3>
+		</a>
 
-    <p class='mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3'>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam deserunt mollitia qui sunt perferendis, sed corrupti reprehenderit porro aliquam vitae, ullam voluptatibus ratione error quae vel. Iure unde repellendus aperiam!
-    </p>
-	<div class="mt-4 flex flex-wrap gap-1">
-		<span
-		  class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600"
-		>
-		{tags}
-		</span>
-	  </div>
-  </div>
+		<p class="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
+			<slot /> <!-- su contenido es inyectado aquí -->
+		</p>
+		<div class="mt-4 flex flex-wrap gap-1">
+			{
+				tags.map((tag) => (
+					<span class="whitespace-nowrap rounded-full bg-purple-100 px-2.5 py-0.5 text-xs text-purple-600">
+						{tag}
+					</span>
+				))
+			}
+		</div>
+	</div>
 </article>
